@@ -26,6 +26,10 @@ unsigned long long int SimpleDataBase::id() {
     return ++n;
 }
 
+Card SimpleDataBase::findCard(long id) {
+
+}
+
 
 Card::Card() = default;
 

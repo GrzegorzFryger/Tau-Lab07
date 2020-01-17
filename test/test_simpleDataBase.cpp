@@ -12,11 +12,11 @@ TEST_CASE("simple test, getAll method") {
     //SetUp
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
 
-    SECTION( "fresh class should not have any elements " ) {
+    SECTION("fresh class should not have any elements ") {
         REQUIRE(database.getAll().empty());
     }
 
-    SECTION( "Should return all objects, when map is not empty" ) {
+    SECTION("Should return all objects, when map is not empty") {
         //given
         Card card = Card("test ", 1);
         std::map<int, Card> *maps = &database.getReferenceToMap();
@@ -44,32 +44,65 @@ TEST_CASE("test create method") {
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     Card card = Card("test", 1);
 
-    SECTION( "should return created object" ) {
+    SECTION("should return created object") {
         //when
-        auto  createdCard = database.createCard(card);
+        auto createdCard = database.createCard(card);
         //then
         REQUIRE(createdCard.idUser == 1);
         REQUIRE(createdCard.description == "test");
     }
 
-    SECTION( "should assign id to card" ) {
+    SECTION("should assign id to card") {
         //when
-        auto  createdCard = database.createCard(card);
+        auto createdCard = database.createCard(card);
         //then
         REQUIRE(createdCard.id == 2);
     }
 
-    SECTION( "should contains 2 elements in map" ) {
+    SECTION("should contains 2 elements in map") {
         //when
         database.createCard(card);
         database.createCard(card);
-        auto  size = database.getReferenceToMap().size();
+        auto size = database.getReferenceToMap().size();
         //then
         REQUIRE(size == 2);
     }
 }
 
+TEST_CASE("simple test to check if a update method exists") {
+    //given
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    Card card = Card("test ", 1);
 
+    REQUIRE_NOTHROW(database.findCard(1));
+}
+
+TEST_CASE("Should update card in map") {
+    //given
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    Card card = Card("test ", 1);
+    card.id = 1;
+
+    SECTION("should throw exception when object with id not found") {
+        //then
+        REQUIRE_THROWS(database.findCard(2));
+    }
+
+    SECTION("should get object with id") {
+        Card cardToInsert = Card("test ", 1);
+        cardToInsert.id = 2;
+        std::map<int, Card> *maps = &database.getReferenceToMap();
+        maps->insert(std::pair<int, Card>(cardToInsert.id, cardToInsert));
+
+        //when
+        auto createdCard = database.findCard(2);
+        //then
+        REQUIRE(createdCard.id == 2);
+        REQUIRE(createdCard.idUser == 1);
+        REQUIRE(createdCard.description == "test");
+
+    }
+}
 
 
 

@@ -38,7 +38,7 @@ Card SimpleDataBase::findCard(long id) {
 }
 
 void SimpleDataBase::removeCard(long id) {
-
+    map.erase(id);
 }
 
 

@@ -27,7 +27,14 @@ unsigned long long int SimpleDataBase::id() {
 }
 
 Card SimpleDataBase::findCard(long id) {
+    std::map<int,Card>::iterator it;
+    it = map.find(id);
 
+    if(it == map.end()) {
+        throw std::invalid_argument("Not found");
+    }
+
+    return map.find(id)->second;
 }
 
 

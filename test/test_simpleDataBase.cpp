@@ -69,7 +69,7 @@ TEST_CASE("test create method") {
     }
 }
 
-TEST_CASE("simple test to check if a update method exists") {
+TEST_CASE("simple test to check if a find method exists") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     Card card = Card("test ", 1);
@@ -77,10 +77,10 @@ TEST_CASE("simple test to check if a update method exists") {
     REQUIRE_NOTHROW(database.findCard(1));
 }
 
-TEST_CASE("Should update card in map") {
+TEST_CASE("should find card in map") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
-    Card card = Card("test ", 1);
+    Card card = Card("test", 1);
     card.id = 1;
 
     SECTION("should throw exception when object with id not found") {
@@ -89,7 +89,7 @@ TEST_CASE("Should update card in map") {
     }
 
     SECTION("should get object with id") {
-        Card cardToInsert = Card("test ", 1);
+        Card cardToInsert = Card("test", 1);
         cardToInsert.id = 2;
         std::map<int, Card> *maps = &database.getReferenceToMap();
         maps->insert(std::pair<int, Card>(cardToInsert.id, cardToInsert));

@@ -15,6 +15,10 @@ std::vector<Card> SimpleDataBase::getAll() {
     return cards;
 }
 
+Card SimpleDataBase::createCard(Card card) {
+
+}
+
 
 Card::Card() = default;
 

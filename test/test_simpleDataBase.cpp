@@ -31,3 +31,44 @@ TEST_CASE("simple test, getAll method") {
 
 }
 
+TEST_CASE("simple test to check if a create method exists") {
+    //given
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    Card card = Card("test ", 1);
+
+    REQUIRE_NOTHROW(database.createCard(card));
+}
+
+TEST_CASE("test create method") {
+    //given
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    Card card = Card("test ", 1);
+
+    SECTION( "should return created object" ) {
+        //when
+        auto  createdCard = database.createCard(card);
+        //then
+        REQUIRE(createdCard.idUser == 1);
+        REQUIRE(createdCard.description == "test");
+    }
+
+    SECTION( "should assign id to card" ) {
+        //when
+        auto  createdCard = database.createCard(card);
+        //then
+        REQUIRE(createdCard.id == 2);
+    }
+
+    SECTION( "should contains 2 elements in map" ) {
+        //when
+        auto  size = database.getReferenceToMap().size();
+        //then
+        REQUIRE(size == 2);
+    }
+}
+
+
+
+
+
+

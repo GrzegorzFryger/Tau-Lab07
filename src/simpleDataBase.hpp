@@ -21,6 +21,8 @@ public:
 
     std::vector<Card> getAll();
 
+    Card createCard(Card card);
+
 protected:
     std::map<int, Card> map;
 };

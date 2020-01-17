@@ -16,7 +16,14 @@ std::vector<Card> SimpleDataBase::getAll() {
 }
 
 Card SimpleDataBase::createCard(Card card) {
+    card.id = id();
+    map.insert(std::pair<int, Card>(card.id, card));
+    return map[card.id];
+}
 
+unsigned long long int SimpleDataBase::id() {
+    static unsigned long long int n = 0;
+    return ++n;
 }
 
 

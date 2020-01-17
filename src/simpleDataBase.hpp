@@ -25,6 +25,9 @@ public:
 
 protected:
     std::map<int, Card> map;
+private:
+    unsigned long long int id();
+
 };
 
 

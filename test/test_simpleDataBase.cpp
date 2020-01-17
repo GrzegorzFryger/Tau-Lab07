@@ -42,7 +42,7 @@ TEST_CASE("simple test to check if a create method exists") {
 TEST_CASE("test create method") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
-    Card card = Card("test ", 1);
+    Card card = Card("test", 1);
 
     SECTION( "should return created object" ) {
         //when
@@ -61,6 +61,8 @@ TEST_CASE("test create method") {
 
     SECTION( "should contains 2 elements in map" ) {
         //when
+        database.createCard(card);
+        database.createCard(card);
         auto  size = database.getReferenceToMap().size();
         //then
         REQUIRE(size == 2);

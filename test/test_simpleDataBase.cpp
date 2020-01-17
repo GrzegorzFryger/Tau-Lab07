@@ -100,8 +100,28 @@ TEST_CASE("should find card in map") {
         REQUIRE(createdCard.id == 2);
         REQUIRE(createdCard.idUser == 1);
         REQUIRE(createdCard.description == "test");
-
     }
+}
+
+TEST_CASE("test to check if remove method exists") {
+    //given
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    //then
+    REQUIRE_NOTHROW(database.removeCard(1));
+}
+
+TEST_CASE("should remove card in map") {
+    SimpleDatabaseHelper database = SimpleDatabaseHelper();
+    Card card = Card("test ", 1);
+    card.id = 1;
+    std::map<int, Card> *maps = &database.getReferenceToMap();
+    maps->insert(std::pair<int, Card>(card.id, card));
+
+    //when
+    database.removeCard(1);
+
+    REQUIRE(database.getAll().empty());
+
 }
 
 

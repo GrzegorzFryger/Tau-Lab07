@@ -20,6 +20,7 @@ public:
     std::vector<Card> getAll();
     Card createCard(Card card);
     Card findCard(long id);
+    void removeCard(long id);
 protected:
     std::map<int, Card> map;
 private:

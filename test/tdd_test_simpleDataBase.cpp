@@ -1,14 +1,14 @@
 #include <catch2/catch.hpp>
 #include <simpleDataBase.hpp>
 
-TEST_CASE("simple test to check if a method exists") {
+TEST_CASE("check if a method exists") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
 
     REQUIRE_NOTHROW(database.getAll());
 }
 
-TEST_CASE("simple test, getAll method") {
+TEST_CASE("test getAll method") {
     //SetUp
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
 
@@ -16,7 +16,7 @@ TEST_CASE("simple test, getAll method") {
         REQUIRE(database.getAll().empty());
     }
 
-    SECTION("Should return all objects, when map is not empty") {
+    SECTION("should return all objects, when map is not empty") {
         //given
         Card card = Card("test ", 1);
         std::map<int, Card> *maps = &database.getReferenceToMap();
@@ -31,7 +31,7 @@ TEST_CASE("simple test, getAll method") {
 
 }
 
-TEST_CASE("simple test to check if a create method exists") {
+TEST_CASE("check if create method exists") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     Card card = Card("test ", 1);
@@ -69,15 +69,7 @@ TEST_CASE("test create method") {
     }
 }
 
-TEST_CASE("simple test to check if a find method exists") {
-    //given
-    SimpleDatabaseHelper database = SimpleDatabaseHelper();
-    Card card = Card("test ", 1);
-
-    REQUIRE_NOTHROW(database.findCard(1));
-}
-
-TEST_CASE("should find card in map") {
+TEST_CASE("test find method") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     Card card = Card("test", 1);
@@ -103,14 +95,14 @@ TEST_CASE("should find card in map") {
     }
 }
 
-TEST_CASE("test to check if remove method exists") {
+TEST_CASE("check if remove method exists") {
     //given
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     //then
     REQUIRE_NOTHROW(database.removeCard(1));
 }
 
-TEST_CASE("should remove card in map") {
+TEST_CASE("should remove card from map") {
     SimpleDatabaseHelper database = SimpleDatabaseHelper();
     Card card = Card("test ", 1);
     card.id = 1;
